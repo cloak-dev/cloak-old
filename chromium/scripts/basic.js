@@ -142,27 +142,20 @@ function sendPublicKey() {
     return pub.then(key => socket.emit("message", { message: `MIXEDKEY${key}`, username }));
 }
 
-const button = document.createElement("button");
-button.innerText = "setup";
-button.style.position = "fixed";
-button.style.bottom = "0";
-button.style.right = "0";
-button.style.zIndex = "99 !important";
+setup().then(() => {
+    const button = document.querySelector("#cloak-button");
+    button.style.visibility = "visible";
+    button.addEventListener("click", () => {
+        sendPublicKey().then(() => {
+            button.innerText = "";
+            button.style.padding = button.style.margin = 0;
+            button.style.borderRadius = "50%";
 
-button.addEventListener("click", function setupHandler() {
-    button.innerText = "setting up...";
-    setup().then(() => {
-        button.innerText = "run";
-        button.removeEventListener("click", setupHandler);
-        button.addEventListener("click", async () => {
-            button.innerText = "running...";
-            sendPublicKey().then(() => {
-                button.style.display = "none";
-            });
+            const img = document.querySelector("#cloak-logo");
+            img.style.visibility = "visible";
+            button.appendChild(img);
         });
     });
 });
-
-document.body.appendChild(button);
 
 // setup();

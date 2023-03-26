@@ -9,7 +9,7 @@
     "permissions": ["activeTab", "scripting"],
     "web_accessible_resources": [
         {
-            "resources": ["scripts/basic.js"],
+            "resources": ["scripts/basic.js", "assets/logo.png"],
             "matches": ["<all_urls>"]
         }
     ]
