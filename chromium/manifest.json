@@ -1,0 +1,16 @@
+{
+    "name": "Cloak",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {},
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": ["activeTab", "scripting"],
+    "web_accessible_resources": [
+        {
+            "resources": ["scripts/basic.js"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}
